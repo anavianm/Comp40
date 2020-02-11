@@ -1,0 +1,184 @@
+
+             ,---------------------------,
+             |  /---------------------\  |
+             | |                       | |
+             | |     Comp40 README     | |
+             | |      ilai01           | |
+             | |      manavi01         | |
+             | |                       | |
+             |  \_____________________/  |
+             |___________________________|
+           ,---\_____     []     _______/------,
+         /         /______________\           /|
+       /___________________________________ /  | ___
+       |                                   |   |    )
+       |  _ _ _                 [-------]  |   |   (
+       |  o o o                 [-------]  |  /    _)_
+       |__________________________________ |/     /  /
+   /-------------------------------------/|      ( )/
+ /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ /
+/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ /
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+/----------------------------------------------------------------\
+|                                                                |
+|   Assignment: iii (Comp 40, HW2)                               |
+|   Authors   : Isabelle Lai (ilai01), Max Anavian (manavi01)    |
+|   Date      : 2/10/2020                                        |
+|                                                                |
+|   Files     : uarray2.c / uarray2.h                            |
+|               bit2.c / bit2.h                                  |
+|               sudoku.c                                         |
+|               unblackedges.c                                   |
+|                                                                |
+|                                                                |
+|    Compile   : make                                            |
+|    Run With  : ./unblackedges [filename.pbm] > [outputfile.pbm]|
+|                ./sudoku [filename]                             |
+|                ./my_useuarray2 ./my_usebit2                    |
+|                                                                |
+\----------------------------------------------------------------/
+
+/----------------------------------------------------------------\
+|                                                                |
+|   Help from : TA Danielle Lam / Jessica                        |
+|               [https://gph.is/g/aQNpnzR]                       |
+|                                                                |
+\----------------------------------------------------------------/
+
+/----------------------------------------------------------------\
+|                                                                |
+|  Implemented:              useuarray2 and usebit2 prints       |
+|                            Array is Ok!                        |
+|                                                                |
+|                            Sudoku correctly reads in files     |
+|                            Sudoku recognizes if boards are     |
+|                            of correct type                     |
+|                            Correctly Recognizes if boards are  |
+|                            "correct"                           |
+|                            Exits with code 1                   |
+|                                                                |
+|                            Unblackedges correctly removes black|
+|                            edges of hyphen.pnm and various     |
+|                            other test files, including ones    |
+|                            done in lab3                        |
+|                             Exits with code 1 or aborts        |   
+|                                                                |
+\----------------------------------------------------------------/
+
+/----------------------------------------------------------------\
+|  Explanation                                                   | 
+|                                                                |
+|  uarray2     : Uarray2 uses a 2D hanson uarray. It uses two of |  
+|                Hanson's uarray funtion, and is essentially     |
+|                arrays inside an array. It uses typecasting to  |
+|                convert arrays of our UArray2_T type from       |
+|                Hanson's UArray_T types. It implements a        |
+|                row_major and col_major way of iterating through| 
+|                the 2D UArray2_T.                               |
+| bit2        :  Bit2_T implements a single Hanson UArray,       |
+|                which houses an array of structs, each with a   |
+|                vector of Hanson's Bit_T type. The structs      |
+|                contain the col and row of the bit.             |
+| Sudoku.c    :  Sudoku uses our implementation of UArray2_T. It |
+|                reads in a "Sudoku Board" as a graymap file and |
+|                tests its validity as a sudoku board. It also   |
+|                tests if the board is correct and accurate. The |
+|                board is stored as a UArray2_T.                 |
+| unblackedges:  Unblackedges reads in a graymap file and        |
+|                populates a bit_map which is of type Bit2_T     |
+|                with the individual pixels that make up the     |
+|                image. The bit_map is then traversed by our     |
+|                algorithm. While being traversed, if the current| 
+|                pixel is black, It is turned white and any      |
+|                surrounding black pixel is added to a Hanson    |
+|                sequence called queue. After all the adjacent   |
+|                pixels are added to the queue, pixel are popped |
+|                off the queue, where the next adjacent black    |
+|                pixels are added. This occurs for all possible  |
+|                "true black edge" pixels. If the file is not    |
+|                of correct format it aborts.                    |     
+\----------------------------------------------------------------/
+
+/----------------------------------------------------------------\
+|  Testing                                                       |
+|                                                                |
+|  uarray2 / bit2 : Tested each function by using print          |
+|                   statements to ensure values were correctly   |
+|                   updated. We also used the included useuarray |
+|                   usebitarray functions to test if the array   |
+|                   was being populated correctly. No valgrind   | 
+|                   leaks.                                       |
+|                                                                |
+|  sudoku.c       : Tested with a variety of PGM files containing|
+|                   cases of a correct solution, a incorrect     |
+|                   solution, and cases with invalid inputs.     |
+|                   These invalid inputs include bad PGM types,  |
+|                                                                |
+|                   a wrong height and width, incorrect filetypes|
+|                   and numbers that are not 1 < x < 9. No       |
+|                   valgrind leaks.                              |
+|                                                                |
+|  unblackedges   : Tested with several files including all black|
+|                   files, hyphen.png, files with uneven heights |
+|                   and width. Small and large files sizes.      |
+|                   Images from standard input. Also tested cases| 
+|                   when file was not correctly formatted or     |
+|                   if no file was given. No valgrind Leaks.     |
+|                                                                |
+\-----------------------------------------------------------------
+
+
+/----------------------------------------------------------------\
+|                                                                |
+|   Time spent (tracked via Toggl): 22 hours                     |
+|                                                                |
+\----------------------------------------------------------------/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,212 @@
+/*
+ *  Brightness.c
+ *  Kyle Sayers, Max Anavian
+ *  1/19/2020
+ *  Homework 1
+ *  Notes: Calculates the brightness of a pgm file
+ */ 
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include "pnmrdr.h"
+#include "except.h"
+
+/* Function : Skip Comments
+ * Arguments: File_p (already opened)
+ * Returns  : None
+ * Details  : Skips pgm magic number and # comment lines
+ */
+void skipComments(FILE *file_p) {
+    
+    char c;
+
+    /* Skip magic number */
+    while ((c = fgetc(file_p)) != EOF) {
+        if (c == '\n') {
+            c = fgetc(file_p);
+            break;
+        }
+    }
+
+    /* Skip comments */
+    while (c == '#') {
+        while ((c = fgetc(file_p)) != EOF) {
+            if (c == '\n') {
+                c = fgetc(file_p);
+                break;
+            }
+        }
+    }
+
+    fseek(file_p, -1, SEEK_CUR);
+}
+
+/* Function : Read Header
+ * Arguments: File_p (already opened), width_p, height_p, max brightness_p
+ * Returns  : Success(1) or failure(0) bool
+ * Details  : Gets basic data from pgm file header 
+ * and returns it via pointers to arguments
+ */
+void readHeader(FILE *file_p,
+               int *file_width, 
+               int *file_height,
+               int *max_brightness) {
+    char c;
+
+    /* Get height */
+    fscanf(file_p, "%d", file_height);
+
+    /* Ensure there's a space inbetween values */
+    if ((c = fgetc(file_p)) != ' ') {
+        exit(EXIT_FAILURE);
+    }
+
+    /* Get width */
+    fscanf(file_p, "%d", file_width);
+
+    /* Ensure there's a \n inbetween values */
+    while ((c = fgetc(file_p)) != EOF) {
+        if (c == '\n') {
+            break;
+        }
+        continue;
+    }
+
+    /* Get max_brightness */
+    fscanf(file_p, "%d", max_brightness);
+
+    /* Ensure there's a \n after max_brightness */
+    while ((c = fgetc(file_p)) != EOF) {
+        if (c == '\n') {
+            break;
+        }
+        continue;
+    }
+
+    fseek(file_p, -1, SEEK_CUR);
+}
+
+/* Function : Get Average Brightness
+ * Arguments: File_p (already opened)
+ * Returns  : The average brightness of the file
+ * Details  : Gets each decimal value and averages them
+ */
+
+/*
+float getAvBrightness(FILE* file_p) {
+    int brightness_sum = 0;
+    int total_pixels = 0;
+    int temp_brightness;
+    char c;
+
+    while ((c = fgetc(file_p)) != EOF) { 
+        if (fscanf(file_p, "%d", &temp_brightness) == 1) {
+            brightness_sum += temp_brightness;
+            total_pixels++;
+        }
+    }
+
+    return (float) brightness_sum/total_pixels;
+}
+*/
+
+float getAvBrightness(void * image_map, int image_denominator, int image_size) {
+    float brightness_sum = 0;
+    // int total_pixels = 0;
+    float temp_brightness = 0;
+
+
+    for (int i = 0; i < image_size; i ++){
+        // printf("%d\n", image_size );
+        temp_brightness = Pnmrdr_get(image_map);
+        // printf("%d\n", temp_brightness );
+        // printf("%d\n", image_denominator );
+        // printf("%d\n", temp_brightness / image_denominator );
+        brightness_sum += temp_brightness / image_denominator;
+
+
+    }
+
+    return (float) brightness_sum;
+}
+
+void assert_file_type(FILE *file) {
+    (void) file;
+}
+
+int main(int argc, char **argv) {
+
+    (void) argc;
+
+    char filename[100];
+
+    // int file_width = -1;
+    // int file_height = -1;
+    // int max_brightness = -1;
+    float av_brightness = 1.0;
+
+    FILE* file_p;
+
+    void *image_map = NULL;
+    Pnmrdr_mapdata image_data;
+
+    if (argc == 1) {
+        scanf("%s", filename);
+        file_p = fopen(filename, "r");
+    } else if (argc == 2) {
+        file_p = fopen(argv[1], "r");
+    } else if (argc > 2) {
+        fprintf(stderr, "Too many arguments!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    
+
+    TRY
+
+        image_map = Pnmrdr_new(file_p);
+        image_data = Pnmrdr_data(image_map);
+        
+    EXCEPT(Pnmrdr_Badformat)
+        Pnmrdr_free(image_map);
+        fprintf(stderr, "%s\n", "Bad pnmrdr format");
+        exit(EXIT_FAILURE);
+
+    ELSE
+        fprintf(stderr, "%s\n", "Unknown error");
+
+    END_TRY;
+
+
+    /* Open file */
+    if (file_p == NULL) { 
+        fprintf(stderr, "Cannot open file!\n");
+        exit(EXIT_FAILURE);
+    } 
+
+    float image_denominator = image_data.denominator;
+    // printf("Width: %d Height: %d\n", image_data.width, image_data.height );
+    float image_size = image_data.width * image_data.height;
+    // printf("%d\n", image_size);
+
+     /* Skip comments */
+    // skipComments(file_p);
+
+    /* Read headers */
+    // readHeader(file_p, &file_width, &file_height, &max_brightness);
+
+    /* getAvBrightness */
+    av_brightness = getAvBrightness(image_map, image_denominator, image_size);
+
+    /* Print result */
+    printf("Average is : %f\n", av_brightness);
+
+    (void) image_map;
+    free(image_map);
+    fclose(file_p);
+
+    exit(EXIT_SUCCESS); 
+
+}

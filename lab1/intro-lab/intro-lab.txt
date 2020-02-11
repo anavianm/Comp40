@@ -1,0 +1,70 @@
+               COMP 40 Lab: Naming brightness functions
+                             (for pairs)
+
+
+Partner 1:  Name Kyle Sayers      Login ksayer01
+
+Partner 2:  Name Maxwell Anavian  Login manavi01
+
+
+This file goes with part 8 of the first lab.  The idea is to give you
+some practice thinking about the names of functions.  The problem is a
+simple one, so we're doing the software equivalent of shooting a fly
+with an elephant gun, but because the problem is so simple, it makes
+it easy to have a short practice session.
+
+Here is the problem:
+
+  - Suggest three different functions that might be useful in
+    implementing `brightness`.
+
+  - For each function, suggest three possible names.
+
+  - For each function, say which name you think is most appropriate
+    and *why*.
+
+
+
+Function #1: skipping the comments in the pgm file
+
+  Job: Skips all the comments in a pgm file
+
+  Candidate names: 
+
+  Best name: skip_comments
+
+  Why the given name is the best: Because it exactly describes what
+  the function does.
+
+
+
+
+
+Function #2: read in the header data of a pgm file
+
+  Job: read in the header data that come after the comments
+
+  Candidate names: read_in, read_header, 
+
+  Best name: read_header
+
+  Why the given name is the best: because it exactly describe what 
+  the function does in reading in the header
+
+
+
+
+
+Function #3: 
+
+  Job: getting the average brightness of the file
+
+  Candidate names: getBrightness, getAvBrightness,  avgBrightness
+
+  Best name: getAvBrightness
+
+  Why the given name is the best: Has all three descriptors in the name 
+  which makes it clear and concise. 
+
+
+

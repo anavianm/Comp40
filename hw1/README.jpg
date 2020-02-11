@@ -1,0 +1,52 @@
+README
+
+/ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\
+|                                                                |
+|   Assignment: filesnpix (Comp 40, HW1)                         |
+|   Authors   : Kyle Sayers (ksayer01), Max Anavian (manavi01)   |
+|   Date      : 1/31/2020                                        |
+|                                                                |
+|   Files     : brightness.c                                     |
+|               readaline.c                                      |
+|               simlines.c                                       |
+|                                                                |
+\ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -/
+
+/ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\
+|                                                                |
+|   Help from : TA Danielle Lam on piazza                        |
+|               [https://gph.is/g/aQNpnzR]                       |
+|                                                                |
+\ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -/
+
+/ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\
+|                                                                |
+|   Correctly Implemented  : Brightness discerns PGM files       |
+|                            Brightness correct av brightness    |
+|                            Brightness passes valgrind          |
+|                            Brightness handles streamed files   |
+|                                                                |
+|                            Readaline correctly reads lines     |
+|                            Readaline ignores non-word chars    |
+|                                                                |
+|                            Simlines implements readaline       |
+|                            Simlines finds similarities         |
+|                            Simlines handles multiple files     |
+|                            Simlines handles same file args     |
+|                                                                |
+|   Incorrectly Implemented: Readaline only handles lines        |
+|                                <= 200                          |
+|                                                                |
+|                            Simlines does not properly free     |
+|                                allocated heap memory           |
+|                            Simlines sometimes segfaults in     |
+|                                unexpected ways (but not in     |
+|                                valgrind)                       |
+|                                                                |
+\ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -/
+
+/ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\
+|                                                                |
+|   Time spent (tracked via Toggl): 31 hours                     |
+|                                                                |
+\ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -/
